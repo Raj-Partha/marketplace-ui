@@ -1,0 +1,46 @@
+<div class="container">
+  Submit new Offer
+  <div class="row">
+    <div class="col">
+      <section class="main">
+        <div class="col-md-6">
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="symbol">Symbol</label>
+              <div>
+                <input type="text"   [readonly]="createdSuccessfully" [(ngModel)]="newOffer.symbol" placeholder="Symbol" name="symbol" class="form-control" id="symbol">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="symbol">Fees : </label>
+              <div>
+                <input type="number"   [readonly]="createdSuccessfully" [(ngModel)]="newOffer.fees" placeholder="fees" name="fees" class="form-control" id="fees">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="noOfStocks">No of stocks </label>
+              <div>
+                <input type="number"   [readonly]="createdSuccessfully" [(ngModel)]="newOffer.noOfStocks" placeholder="# stocks" name="noOfStocks" class="form-control" id="noOfStocks">
+              </div>
+            </div>
+            <div *ngIf ="!createdSuccessfully">
+              <label></label>
+              <button  class="btn btn-success" (click)="createOffer()">Submit</button>
+            </div>
+            <div *ngIf ="createdSuccessfully">
+              <label></label>
+              <button  class="btn btn-success" (click)="reSet()">Create New</button>
+            </div>
+          </form>
+        </div>
+        <div *ngIf ="createdSuccessfully" class="alert alert-success">
+          <strong>Success!</strong> Offer Submitted Successfully.
+        </div>
+        <div *ngIf ="onError" class="alert alert-danger">
+          <strong>Error !</strong> There looks to be an issue with persisting data.
+        </div>
+                
+      </section>
+    </div>
+  </div>
+</div>

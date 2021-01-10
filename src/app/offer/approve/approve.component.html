@@ -1,0 +1,37 @@
+
+
+<div class="container">
+  Pending Approvals
+<div class="row">
+  <div class="col">
+    <section class="main">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Request Id</th>
+          <th>Symbol</th>
+          <th># Stocks</th>
+          <th>Submitted Time</th>
+          <th>Requester</th>
+          <th>Selected Lender</th>
+          <th>status</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let request of requests">
+          <th scope="row">{{request.requestId}}</th>
+          <td>{{request.symbol}}</td>
+          <td>{{request.noOfStocks}}</td>
+          <td>{{request.createDateTime}}</td>
+          <td>{{request.requestedBy}}</td>
+          <td>{{request.selectedLender}}</td>
+          <td>{{request.status}}</td>
+          <td><button class="btn btn-success" (click)="approveRequest(request)">Approve</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+</div>

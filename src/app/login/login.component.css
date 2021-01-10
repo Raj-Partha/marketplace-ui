@@ -1,0 +1,8 @@
+.jumbotron {
+  width: auto;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    top:35%;
+    bottom:35%;
+}

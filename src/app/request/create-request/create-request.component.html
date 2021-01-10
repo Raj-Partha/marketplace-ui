@@ -1,0 +1,72 @@
+<div class="container">
+  Submit new request
+  <div class="row">
+    <div class="col">
+      <section class="main">
+        <div class="col-md-6">
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="symbol">Symbol</label>
+              <div>
+                <input type="text" [readonly]="createdSuccessfully" [(ngModel)]="request.symbol" placeholder="Symbol" name="symbol" class="form-control"
+                  id="symbol">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="symbol">Fees : </label>
+              <div>
+                <input type="number" [readonly]="createdSuccessfully" [(ngModel)]="request.fees" placeholder="fees" name="fees" class="form-control"
+                  id="fees">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="noOfStocks">No of stocks </label>
+              <div>
+                <input type="number" [readonly]="createdSuccessfully" [(ngModel)]="request.noOfStocks" placeholder="# stocks" name="noOfStocks"
+                  class="form-control" id="noOfStocks">
+              </div>
+            </div>
+            <div class="form-group" *ngIf="!matchingSuccess">
+              <label></label>
+              <button class="btn btn-success"  (click)="getEligigleParties(request.noOfStocks, request.symbol)">Retrive Matching
+                providers</button>
+            </div>
+            <div class="form-group"  *ngIf="matchingSuccess" >
+              <label>Lender Name</label>
+
+              <div>
+                <select *ngIf="!createdSuccessfully" class='select-option' [ngModelOptions]="{standalone: true}" required [(ngModel)]='optionSelected'>
+                  <option class='option' *ngFor='let option of options' [value]="option">{{option}}</option>
+                </select>
+                <input *ngIf="createdSuccessfully" [readonly]="createdSuccessfully" [(ngModel)]="optionSelected" name="optionSelected" id="optionSelected" >
+                
+              </div>
+            </div>
+
+            <div *ngIf="matchingSuccess && !createdSuccessfully ">
+              <label></label>
+              <button class="btn btn-success" (click)="createRequest()">Submit</button>
+            </div>
+            <div *ngIf ="createdSuccessfully">
+                <label></label>
+                <button  class="btn btn-success" (click)="reSet()">Create New</button>
+              </div>
+          </form>
+          <div *ngIf ="createdSuccessfully" class="alert alert-success">
+              <strong>Success!</strong> Request Submitted Successfully.
+            </div>
+            <div *ngIf ="onError" class="alert alert-danger">
+              <strong>Error !</strong> There looks to be an issue with persisting data.
+            </div>
+                    
+            <div *ngIf ="matchingFailed" class="alert alert-danger">
+                <strong>Error !</strong> There looks to be no matching providers.
+              </div>
+                      
+        </div>
+      </section>
+    
+    </div>
+  </div>
+</div>
